@@ -1,0 +1,23 @@
+# Data and build artifacts
+data/
+outputs/
+*.parquet
+submission*.csv
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments and tooling
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.ruff_cache/
+
+# OS
+.DS_Store

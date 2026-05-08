@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hotel-rankifornia"
+version = "0.1.0"
+description = "LambdaMART ensemble for Expedia hotel search ranking (NDCG@5)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.3",
+    "pandas>=2.3",
+    "pyarrow>=23.0",
+    "scikit-learn>=1.8",
+    "lightgbm>=4.6",
+]
+
+[project.optional-dependencies]
+tune = ["optuna>=4.8"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

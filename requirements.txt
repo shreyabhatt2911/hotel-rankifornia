@@ -1,0 +1,13 @@
+# Pinned to the versions the results were produced and verified with (Python 3.13).
+numpy==2.3.5
+pandas==2.3.3
+pyarrow==23.0.1
+scipy==1.17.1
+scikit-learn==1.8.0
+lightgbm==4.6.0
+
+# Optional hyperparameter search (scripts/tune.py)
+optuna==4.8.0
+
+# Development
+pytest==9.1.1
