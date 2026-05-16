@@ -1,0 +1,151 @@
+{
+  "feature_set": "v3",
+  "min_models": 1,
+  "notes": "Leak-free OOF encoding (v3) with hand-tuned depth-family candidates and a 3x booking-query-weighted variant. XGBoost candidates of the original search were never selected and are omitted.",
+  "candidates": {
+    "lgb_500": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01,
+        "num_leaves": 500,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.25,
+        "lambda_l2": 0.25,
+        "seed": 42
+      }
+    },
+    "lgb_400": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.015,
+        "num_leaves": 400,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.7,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.2,
+        "lambda_l2": 0.2,
+        "seed": 42
+      }
+    },
+    "lgb_300": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.02,
+        "num_leaves": 300,
+        "min_data_in_leaf": 25,
+        "feature_fraction": 0.7,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.15,
+        "lambda_l2": 0.15,
+        "seed": 42
+      }
+    },
+    "lgb_seed789": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_data_in_leaf": 50,
+        "feature_fraction": 0.8,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.1,
+        "lambda_l2": 0.1,
+        "seed": 789
+      }
+    },
+    "lgb_500_weighted": {
+      "weighted": true,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01,
+        "num_leaves": 500,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.25,
+        "lambda_l2": 0.25,
+        "seed": 42
+      }
+    },
+    "lgb_500_s123": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01,
+        "num_leaves": 500,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.25,
+        "lambda_l2": 0.25,
+        "seed": 123
+      }
+    }
+  },
+  "reference": {
+    "selected": ["lgb_500", "lgb_500_weighted", "lgb_300"],
+    "ensemble_ndcg": 0.39998554822604576,
+    "individual_scores": {
+      "lgb_500": {
+        "ndcg": 0.39843910627565643,
+        "iter": 841
+      },
+      "lgb_400": {
+        "ndcg": 0.39745543576272,
+        "iter": 580
+      },
+      "lgb_300": {
+        "ndcg": 0.3972322136027564,
+        "iter": 479
+      },
+      "lgb_seed789": {
+        "ndcg": 0.39612701912470466,
+        "iter": 370
+      },
+      "lgb_500_weighted": {
+        "ndcg": 0.3978374662929882,
+        "iter": 903
+      },
+      "lgb_500_s123": {
+        "ndcg": 0.39534889357947983,
+        "iter": 374
+      }
+    }
+  }
+}

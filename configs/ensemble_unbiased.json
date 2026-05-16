@@ -1,0 +1,185 @@
+{
+  "feature_set": "v4",
+  "min_models": 1,
+  "notes": "Unbiased-rate features (v4). Candidates mix Optuna trial 53/30 params (min_data_in_leaf 75-88) with the earlier min_data_in_leaf=20/25 family. XGBoost candidates of the original search were never selected and are omitted.",
+  "candidates": {
+    "t53_s42": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.00694,
+        "num_leaves": 550,
+        "min_data_in_leaf": 75,
+        "feature_fraction": 0.593,
+        "bagging_fraction": 0.866,
+        "bagging_freq": 1,
+        "lambda_l1": 0.255,
+        "lambda_l2": 0.041,
+        "min_gain_to_split": 0.077,
+        "feature_pre_filter": false,
+        "seed": 42
+      }
+    },
+    "t53_s789": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.00694,
+        "num_leaves": 550,
+        "min_data_in_leaf": 75,
+        "feature_fraction": 0.593,
+        "bagging_fraction": 0.866,
+        "bagging_freq": 1,
+        "lambda_l1": 0.255,
+        "lambda_l2": 0.041,
+        "min_gain_to_split": 0.077,
+        "feature_pre_filter": false,
+        "seed": 789
+      }
+    },
+    "t30_s42": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01765,
+        "num_leaves": 500,
+        "min_data_in_leaf": 88,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.884,
+        "lambda_l2": 0.101,
+        "min_gain_to_split": 0.019,
+        "feature_pre_filter": false,
+        "seed": 42
+      }
+    },
+    "t30_s789": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01765,
+        "num_leaves": 500,
+        "min_data_in_leaf": 88,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.884,
+        "lambda_l2": 0.101,
+        "min_gain_to_split": 0.019,
+        "feature_pre_filter": false,
+        "seed": 789
+      }
+    },
+    "old_500_s42": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01,
+        "num_leaves": 500,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.25,
+        "lambda_l2": 0.25,
+        "feature_pre_filter": false,
+        "seed": 42
+      }
+    },
+    "old_300_s42": {
+      "weighted": false,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.02,
+        "num_leaves": 300,
+        "min_data_in_leaf": 25,
+        "feature_fraction": 0.7,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.15,
+        "lambda_l2": 0.15,
+        "feature_pre_filter": false,
+        "seed": 42
+      }
+    },
+    "old_500_weighted": {
+      "weighted": true,
+      "params": {
+        "objective": "lambdarank",
+        "metric": "ndcg",
+        "ndcg_eval_at": [5],
+        "label_gain": [0, 1, 0, 0, 0, 5],
+        "lambdarank_truncation_level": 12,
+        "learning_rate": 0.01,
+        "num_leaves": 500,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.6,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "lambda_l1": 0.25,
+        "lambda_l2": 0.25,
+        "feature_pre_filter": false,
+        "seed": 42
+      }
+    }
+  },
+  "reference": {
+    "selected": ["t53_s42", "t30_s789", "t30_s42"],
+    "ensemble_ndcg": 0.4022608939093907,
+    "individual_scores": {
+      "t53_s42": {
+        "ndcg": 0.4017018491870735,
+        "iter": 1130
+      },
+      "t53_s789": {
+        "ndcg": 0.4001599040590697,
+        "iter": 1009
+      },
+      "t30_s42": {
+        "ndcg": 0.40080929175733915,
+        "iter": 509
+      },
+      "t30_s789": {
+        "ndcg": 0.401302613792256,
+        "iter": 570
+      },
+      "old_500_s42": {
+        "ndcg": 0.39072269140622096,
+        "iter": 112
+      },
+      "old_300_s42": {
+        "ndcg": 0.3999004177076661,
+        "iter": 645
+      },
+      "old_500_weighted": {
+        "ndcg": 0.3994737979608921,
+        "iter": 687
+      }
+    }
+  }
+}

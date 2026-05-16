@@ -1,0 +1,8 @@
+{
+  "rrf_k": 60,
+  "weights": {
+    "unbiased": 0.5,
+    "optuna": 0.25,
+    "improved": 0.25
+  }
+}
