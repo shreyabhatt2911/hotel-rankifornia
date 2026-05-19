@@ -42,7 +42,7 @@ flowchart LR
 
 ![Top 15 features by LightGBM gain](docs/figures/feature_importance.png)
 
-**Target encoding without leakage.** Historical click and booking rates per hotel are strong features, but they come straight from the labels. Train rows are encoded out of fold with a 5 fold `GroupKFold` on `srch_id`, and the Bayesian smoothing prior is computed inside each fold rather than once on all the data. Test rows use the average of the five fold tables, so their features carry the same amount of noise as the training features. Fixing those two issues was worth +0.0013 on the leaderboard, more than any modelling change.
+**Target encoding without leakage.** Historical click and booking rates per hotel are strong features, but they come straight from the labels. Train rows are encoded out of fold with a 5 fold `GroupKFold` on `srch_id`, and the Bayesian smoothing prior is computed inside each fold rather than once on all the data. Test rows use the average of the five fold tables, so their features carry the same amount of noise as the training features. Fixing those two issues, together with RRF fusion and a longer final retrain, was worth +0.0013 on the leaderboard, the biggest jump of the project after the feature expansion.
 
 **Position bias.** Hotels near the top of the list get clicked more whether they are good or not, so raw click rates partly measure where Expedia happened to put a hotel. About 30% of searches were shown in random order (`random_bool = 1`), which gives a clean look at what users actually prefer.
 
@@ -56,7 +56,7 @@ On Expedia sorted lists the first slot gets about 21% of clicks, against 14% und
 
 ## Lessons
 
-- **Fixing the data pipeline beat tuning the model.** The two encoding fixes did more for the leaderboard score than every ensemble experiment put together.
+- **Fixing the data pipeline paid off more than tuning.** The encoding fix was the biggest single jump after the feature expansion, bigger than any hyperparameter or ensemble change.
 - **Validation stopped tracking the leaderboard near the end.** A 60 trial Optuna search improved validation by 0.0016 and the leaderboard by nothing. Late changes only paid off when they brought in genuinely new information.
 - **Diversity has to come from the features.** Blends of models trained on the same features had rank correlations above 0.99 and gained nothing. Blending across feature sets (correlation around 0.98) is where the final improvement came from.
 
@@ -83,7 +83,7 @@ python scripts/train_ensemble.py --variant optuna
 python scripts/blend.py                                # outputs/submissions/submission_blend.csv
 ```
 
-Every script takes `--data-dir`, `--processed-dir` and `--output-dir`. The full candidate search takes a few hours per variant on a laptop. Adding `--reuse-selection` skips the search and retrains only the models and round counts saved in `configs/`, which is much faster. `scripts/tune.py` reruns the Optuna search (around 9 hours for 60 trials, install with `pip install -e ".[tune]"`) and is not needed to reproduce the submission.
+Every script takes `--data-dir`, `--processed-dir` and `--output-dir`. The full candidate search takes a few hours per variant on a laptop. Adding `--reuse-selection` skips the search and retrains only the models and round counts saved in `configs/`, which brings it down to about an hour per variant on an 8 core laptop. `scripts/tune.py` reruns the Optuna search (around 9 hours for 60 trials, install with `pip install -e ".[tune]"`) and is not needed to reproduce the submission.
 
 The tests run in a few seconds.
 

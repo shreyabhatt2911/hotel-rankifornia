@@ -25,14 +25,15 @@ Ten days of experiments, 8 to 17 May 2026. Scores are NDCG@5. "Val (id split)" i
 | **Unbiased ensemble** | | **0.4023** | **0.41637** | **17 May** | **Position debiased rates and a price feature fix** |
 | Two way blend | | | 0.41665 | 17 May | Unbiased 50 and Optuna 50, blending across feature sets |
 | **Three way blend** | | | **0.41682** | **17 May** | **Unbiased 50, Optuna 25, Improved 25. Final submission** |
-| Paper features (v5 set) | | 0.4033 | 0.41600 | 17 May | Count features and composites from the literature, worse on the leaderboard |
+| Paper features | | 0.4033 | 0.41600 | 17 May | Count features and composites from the literature, worse on the leaderboard |
 
-Private leaderboard score of the final submission was 0.41792.
+The final submission scored 0.41792 on the private leaderboard, 19th of 146 teams.
 
 ## Where the gains came from
 
 | Change | Leaderboard gain |
 |---|---|
+| 98 to 138 features, including `prop_avg_position` | +0.00375 |
 | Label gain 5 to 1 | +0.00019 |
 | Fewer rounds, picked on the date split | +0.00014 |
 | NDCG truncation at 12 | +0.00030 |
@@ -46,13 +47,13 @@ Private leaderboard score of the final submission was 0.41792.
 
 **Feature breakthrough (10 May).** Going from 98 to 138 features was the largest single jump of the whole project. The standout was `prop_avg_position`, the average position Expedia gave a hotel in its own sorted results. It works as a summary of Expedia's internal quality signal, since hotels that Expedia keeps near the top tend to be good ones.
 
-**Label gain (11 May).** LightGBM's default label gain treats a booking (relevance 5) as 31 times a click. Setting the gain to match the metric's own 5 to 1 ratio gave a small but consistent improvement.
+**Label gain (11 May).** LightGBM's default label gain treats a booking (relevance 5) as 31 times a click. Setting the gains to the raw relevance values, 5 and 1, gave a small improvement.
 
-**The id is not time (14 May).** `srch_id` turned out to have no relationship with the search timestamp, so the original validation split was effectively random. Switching to a split on the timestamp lowered every validation score but made model choices more honest, and the model started stopping earlier.
+**The id is not time (14 May).** `srch_id` turned out to have no relationship with the search timestamp, so the original validation split was effectively random. Switching to a split on the timestamp lowered every validation score but made model choices more honest. Early stopping also picked fewer rounds, which helped slightly on the leaderboard.
 
 **Ensembles (14 to 15 May).** Structural diversity (different depths and leaf counts) helped. Seed averaging alone barely moved anything. Training only on randomly ordered searches got worse at every step, since it throws away 70% of the data.
 
-**Encoding leak (15 May).** Two bugs in the target encoding. The smoothing prior was computed once on all the training data, which leaked held out labels into the encoding of those same rows. Test rows were also encoded with tables fitted on all the training data, so they were less noisy than the out of fold training features the model had learned from. Moving the prior inside the fold loop and averaging the five fold tables for test fixed both. Together with RRF fusion and a longer final retrain, this was the biggest gain of the project.
+**Encoding leak (15 May).** Two bugs in the target encoding. The smoothing prior was computed once on all the training data, which leaked held out labels into the encoding of those same rows. Test rows were also encoded with tables fitted on all the training data, so they were less noisy than the out of fold training features the model had learned from. Moving the prior inside the fold loop and averaging the five fold tables for test fixed both. Together with RRF fusion and a longer final retrain, this was the biggest gain after the feature expansion.
 
 **Hyperparameter search (16 May).** A 60 trial Optuna search found the best validation scores so far and did nothing on the leaderboard. From here on, validation gains from tuning alone stopped carrying over.
 
