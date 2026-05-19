@@ -1,6 +1,6 @@
 # hotel-rankifornia
 
-Learning to rank for hotel search. LightGBM LambdaMART ensembles trained on Expedia search logs, finishing in the top 10 of a university Kaggle competition with a private leaderboard NDCG@5 of 0.41792.
+Learning to rank for hotel search. LightGBM LambdaMART ensembles trained on Expedia search logs, placing in the top 13% (19th of 146 teams) on the private leaderboard of a university Kaggle competition, with an NDCG@5 of 0.41792.
 
 ## The problem
 
@@ -20,7 +20,7 @@ The data comes from the [Personalize Expedia Hotel Searches](https://www.kaggle.
 | **Final blend, 9 models across 3 feature sets** | | **0.41682** | **0.41792** |
 | Competition winner | | 0.42640 | 0.42678 |
 
-The private score came out higher than the public one, which suggests the blend was not overfitting the public half of the test set.
+The private score came out higher than the public one and the team moved up three places when the private leaderboard was revealed, which suggests the blend was not overfitting the public half of the test set.
 
 ![Public leaderboard score across development versions](docs/figures/score_progression.png)
 
